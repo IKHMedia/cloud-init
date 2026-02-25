@@ -45,8 +45,8 @@ ufw allow 443/tcp
 echo "y" | ufw enable
 echo "Firewall configured."
 
-echo ">>> Setting up 1GB Swap File..."
-fallocate -l 1G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=1024
+echo ">>> Setting up 4GB Swap File..."
+fallocate -l 4G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=4096
 chmod 600 /swapfile
 mkswap /swapfile
 swapon /swapfile
