@@ -25,7 +25,7 @@ apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin do
 systemctl enable docker
 echo "Docker installed successfully."
 
-echo ">>> Installing Nginx..."
+#echo ">>> Installing Nginx..."
 #apt-get install -y nginx
 #systemctl enable nginx
 #systemctl start nginx
