@@ -26,9 +26,9 @@ systemctl enable docker
 echo "Docker installed successfully."
 
 echo ">>> Installing Nginx..."
-apt-get install -y nginx
-systemctl enable nginx
-systemctl start nginx
+#apt-get install -y nginx
+#systemctl enable nginx
+#systemctl start nginx
 # Allow Nginx through firewall if installed later
 
 echo ">>> Configuring UFW Firewall..."
@@ -45,16 +45,22 @@ ufw allow 443/tcp
 echo "y" | ufw enable
 echo "Firewall configured."
 
-echo ">>> Setting up 4GB Swap File..."
-fallocate -l 4G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=4096
-chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-echo '/swapfile none swap sw 0 0' >> /etc/fstab
-echo "Swap file created."
+mkdir -p /var/azuracast
+cd /var/azuracast
+curl -fsSL https://raw.githubusercontent.com/AzuraCast/AzuraCast/main/docker.sh > docker.sh
+chmod a+x docker.sh
+yes '' | ./docker.sh install
 
-echo ">>> Setup Complete. Rebooting in 5 seconds..."
-sleep 5
-reboot
+#echo ">>> Setting up 4GB Swap File..."
+#fallocate -l 4G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=4096
+#chmod 600 /swapfile
+#mkswap /swapfile
+#swapon /swapfile
+#echo '/swapfile none swap sw 0 0' >> /etc/fstab
+#echo "Swap file created."
+
+#echo ">>> Setup Complete. Rebooting in 5 seconds..."
+#sleep 5
+#reboot
 
 echo ">>> Setup Complete! restart session or reboot may be required."
